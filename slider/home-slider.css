@@ -9,6 +9,11 @@
 	margin: 0;
 }
 
+#imageSlider > .fl-module-html {
+	height: 100%;
+	width: 100%;
+}
+
 div#imageSlider .slider-wrap img {
 	opacity: 0.65;
 	width: 100%;
