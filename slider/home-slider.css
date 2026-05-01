@@ -9,7 +9,8 @@
 	margin: 0;
 }
 
-#imageSlider > .fl-module-html {
+#imageSlider > .fl-module-html,
+#imageSlider .swiper {
 	height: 100%;
 	width: 100%;
 }
