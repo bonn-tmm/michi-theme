@@ -65,7 +65,7 @@ Use `npm run start` in that same folder for watch mode during active block devel
 Theme updates are configured in `functions.php` using:
 
 - repository: `https://github.com/bonn-tmm/michi-theme`
-- branch: `main`
+- branch: `master`
 - slug: `michi-theme`
 
 Update checker loader is in `updater/updater.php`.
@@ -85,4 +85,3 @@ Ensure the REST routes registered in `inc/rest-api.php` stay compatible with the
 2. Build block assets if `blocks/dealer-finder/src/*` changed.
 3. Commit and tag release.
 4. Push to `main` so updater can detect new version metadata.
-

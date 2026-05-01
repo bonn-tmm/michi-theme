@@ -33,7 +33,7 @@ $update_checker = PucFactory::buildUpdateChecker(
 	'michi-theme'
 );
 
-$update_checker->setBranch( 'main' );
+$update_checker->setBranch( 'master' );
 
 
 /**
