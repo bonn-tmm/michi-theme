@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "michi/dealer-finder",
+  "version": "1.0.0",
+  "title": "Michi Dealer Finder",
+  "category": "widgets",
+  "icon": "location-alt",
+  "description": "Display dealer listings with country and state/region filters",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "showSidebar": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "textdomain": "michi-dealers",
+  "editorScript": "file:./build/index.js",
+  "editorStyle": "file:./src/editor.css",
+  "style": "file:./src/style.css",
+  "viewScript": "file:./src/view.js"
+}

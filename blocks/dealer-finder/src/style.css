@@ -1,0 +1,464 @@
+/**
+ * Michi Dealer Finder Block Styles
+ * Frontend and Editor styles
+ */
+
+.michi-dealer-finder {
+	margin: 0 auto;
+	padding: 0rem 2rem;
+	color: #fff;
+	font-family: 'Montserrat';
+}
+
+.dealer-finder-label {
+	font-size: 0.875rem;
+	letter-spacing: 0.1em;
+	color: #999;
+	margin-bottom: 0.5rem;
+	font-weight: 500;
+}
+
+.dealer-finder-heading {
+	font-size: 2.5rem;
+	font-weight: 300;
+	margin: 0 0 1rem 0;
+	line-height: 1.2;
+	color: #fff;
+}
+
+.dealer-finder-description {
+	font-size: 1rem;
+	line-height: 1.6;
+	color: #b5b5b5;
+	max-width: 600px;
+	margin: 0;
+}
+
+/* Filters */
+.dealer-finder-filters {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 1.5rem;
+	/* margin: 3rem 0; */
+}
+
+.filter-group label {
+	display: block;
+	font-size: 0.875rem;
+	letter-spacing: 0.05em;
+	margin-bottom: 0.5rem;
+	font-weight: 500;
+	color: #999;
+}
+
+.filter-group select {
+	width: 100%;
+	padding: 0.75rem 1rem;
+	font-size: 1em;
+	background: #272727;
+	border-radius: 10px;
+	/* border: 1px solid #333; */
+	background-color: #1a1a1a;
+	color: #fff;
+	/* border-radius: 4px; */
+	cursor: pointer;
+	appearance: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23999' d='M1.41 0L6 4.59L10.59 0L12 1.41L6 7.41L0 1.41L1.41 0Z'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 1rem center;
+	padding-right: 2.5rem;
+}
+
+.filter-group select option {
+	font-size: 16px;
+}
+
+#state-select {
+	display: none;
+}
+
+.filter-group select:hover:not(:disabled) {
+	border-color: #666;
+}
+
+.filter-group select:focus {
+	outline: none;
+	border-color: #999;
+}
+
+.filter-group select:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* Content Layout */
+.dealer-finder-content {
+	display: grid;
+	grid-template-columns: 280px 1fr;
+	gap: 4rem;
+	align-items: start;
+}
+
+@media (max-width: 768px) {
+	.dealer-finder-content {
+		grid-template-columns: 1fr;
+	}
+	aside.dealer-states-sidebar {
+		display: block;
+		position: relative;
+	}
+}
+
+/* Sidebar */
+.dealer-states-sidebar {
+	position: sticky;
+	top: 2rem;
+	align-self: start;
+	background: transparent;
+	padding: 0;
+	padding-right: 3rem;
+	min-height: 500px;
+	padding-top: 24px;
+}
+
+.dealer-states-sidebar h3 {
+	font-size: 9px;
+	letter-spacing: 2.25px;
+	color: #999;
+	margin-bottom: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.dealer-states-sidebar ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-weight: 500;
+	font-size: 12px;
+	max-height: 60vh;
+	overflow-y: auto;
+}
+
+.dealer-states-sidebar li {
+}
+
+.dealer-states-sidebar a {
+	color: #888;
+	padding-left: 1rem;
+	text-decoration: none;
+	font-size: 12px;
+	padding: 8px 22px;
+	transition: all 0.2s;
+	display: block;
+	line-height: 18px;
+	font-family: 'Montserrat';
+	border-left: 1.6px solid transparent;
+}
+
+.dealer-states-sidebar a:hover,
+.dealer-states-sidebar a.active {
+	background-color: #10141a;
+	border-left: 1.6px solid #4a80c4;
+	color: #42649a;
+}
+
+.dealer-finder-content::before {
+	content: '';
+	height: 100%;
+	position: absolute;
+	border-right: 1px solid #222;
+	left: 280px;
+}
+.dealer-finder-content {
+	position: relative;
+}
+
+/* Dealer Results */
+.dealer-results {
+	min-height: 300px;
+	background: transparent;
+	margin-top: 48px;
+}
+
+.state-heading {
+	font-size: 3rem;
+	font-weight: 800;
+	margin: 0 0 0.5rem 0;
+	padding-bottom: 13px;
+	/* text-decoration: underline; */
+	width: fit-content;
+	border-bottom: 0.8px solid #4a80c4;
+	/* text-decoration-color: #4a80c4; */
+	/* text-underline-offset: 6px; */
+	color: #fff;
+	line-height: 1.2;
+}
+
+.dealer-count {
+	font-size: 10px;
+	letter-spacing: 1px;
+	color: #999;
+	line-height: 16.5px;
+	font-weight: 600;
+	text-transform: uppercase;
+	margin-bottom: 12.5px;
+	margin-top: 12.5px;
+	display: block;
+}
+
+/* Dealer Cards */
+.dealer-card {
+	background-color: #161616;
+	border: 1px solid rgba(255, 255, 255, 0.07);
+	padding: 23px 28px;
+	margin-bottom: 12.5px;
+	border-radius: 0;
+	transition: all 0.2s;
+	margin-top: 0;
+}
+
+.dealer-card:hover {
+	border-color: #2a2a2a;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.michi-dealer-finder .dealer-card .dealer-name {
+	font-size: 15px;
+	font-weight: 700;
+	margin-bottom: 7.35px;
+	margin-top: 0;
+	color: #fff;
+	line-height: 24.75px;
+	letter-spacing: -0.15px;
+}
+
+.dealer-card p {
+	margin: 0;
+	color: #888;
+	line-height: 21.45px;
+	font-size: 13px;
+	font-family: 'Inter';
+	font-weight: 300;
+}
+
+.dealer-address {
+	color: #888;
+	margin-bottom: 1rem;
+	line-height: 1.5;
+}
+
+.dealer-contact-info {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px;
+	margin-top: 1rem;
+}
+
+.dealer-phone,
+.dealer-email,
+.dealer-website {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 0.5rem;
+	font-size: 13px;
+	color: #aaaaaa;
+}
+
+.dealer-card .dealer-contact-info strong,
+.dealer-card .dealer-types strong {
+	color: #999;
+	font-size: 8px;
+	line-height: 13.2px;
+	letter-spacing: 1.6px;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.dealer-email a,
+.dealer-website a {
+	color: #aaaaaa;
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.dealer-email a:hover,
+.dealer-website a:hover {
+	color: #fff;
+}
+
+.dealer-types {
+	margin-top: 1rem;
+	padding-top: 1rem;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.dealer-card p.dealer-types {
+	color: #aaa;
+	font-size: 13px;
+}
+
+.no-dealers {
+	color: #999;
+	font-style: italic;
+	padding: 2rem 0;
+}
+
+/* Editor Preview */
+.dealer-preview {
+	background-color: #0a0a0a;
+	border: 1px solid #222;
+	border-radius: 8px;
+	min-height: 200px;
+}
+
+.dealer-email,
+.dealer-phone,
+.dealer-website {
+	font-family: 'Montserrat';
+}
+
+.dealer-address,
+.dealer-phone,
+.dealer-website {
+	font-weight: 300 !important;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.dealer-email,
+.dealer-address,
+.dealer-phone,
+.dealer-website a {
+	font-family: 'Inter';
+}
+
+.dealer-card strong {
+	font-family: 'Montserrat';
+}
+
+.fl-builder-content h1,
+.fl-builder-content h2,
+.fl-builder-content h3,
+.fl-builder-content h4,
+.fl-builder-content h5,
+.fl-builder-content h6 {
+	font-family: 'Montserrat';
+	/* font-weight: 800; */
+	font-weight: 700;
+}
+
+.fl-builder-content .fl-node-zkgp8rd7m1y4.fl-module-rich-text.fl-rich-text * {
+	color: #5680bf;
+	font-weight: 600;
+}
+
+a:hover,
+a:focus {
+	text-decoration: none !important;
+}
+
+#dealer-listings h2.state-heading {
+	font-weight: 900;
+	font-size: 28px;
+	line-height: 46.2px;
+	letter-spacing: -0.56px;
+}
+
+/* Empty Region Card */
+.empty-region-card {
+	background-color: #080808;
+	border: 1px solid rgba(255, 255, 255, 0.07);
+	padding: 32px 29px;
+	margin-top: 12.5px;
+}
+
+.empty-region-icon {
+	width: 48px;
+	height: 48px;
+	margin-bottom: 9px;
+}
+
+.michi-dealer-finder .empty-region-heading {
+	font-size: 15px;
+	font-weight: 700;
+	color: #fff;
+	margin: 0 0 19px 0;
+	line-height: 24.75px;
+	letter-spacing: -0.15px;
+}
+
+.empty-region-text {
+	font-size: 13px;
+	line-height: 20.8px;
+	color: #888;
+	margin: 0 0 19px 0;
+	font-family: 'Inter';
+	font-weight: 300;
+	max-width: 870px;
+}
+
+.empty-region-description {
+	margin-bottom: 16px;
+	color: #888;
+	font-size: 14px;
+	line-height: 1.7;
+	font-family: 'Inter';
+	font-weight: 300;
+}
+
+.empty-region-cta {
+	display: inline-block;
+	color: var(--fl-global-primary);
+	font-size: 13px;
+	font-weight: 300;
+	line-height: 20.8px;
+	text-decoration: none;
+	font-family: 'Inter';
+	transition: color 0.2s;
+}
+
+.empty-region-cta:hover {
+	color: #6a9fd8;
+}
+
+.musicdirect {
+	background-color: white;
+	padding: 8px;
+}
+
+/* Container scroll behavior */
+#states-list {
+	overflow-y: auto;
+}
+
+.michi-dealer-finder *::-webkit-scrollbar {
+	width: 8px;
+	height: 4px;
+}
+
+.michi-dealer-finder *::-webkit-scrollbar-track {
+	background-color: transparent;
+	border-radius: 2px;
+	transition: background-color 0.2s ease;
+}
+
+.michi-dealer-finder *::-webkit-scrollbar-thumb {
+	background-color: transparent;
+	border-radius: 8px;
+	min-height: 40px;
+	transition: background-color 0.2s ease;
+}
+
+.michi-dealer-finder *:hover::-webkit-scrollbar-thumb {
+	background-color: #999;
+}
+
+.michi-dealer-finder *::-webkit-scrollbar-button {
+	display: none;
+	width: 0;
+	height: 0;
+}

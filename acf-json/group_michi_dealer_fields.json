@@ -1,0 +1,346 @@
+{
+    "key": "group_michi_dealer_fields",
+    "title": "Michi Dealer Information",
+    "fields": [
+        {
+            "key": "field_dealer_address_1",
+            "label": "Address 1",
+            "name": "address_1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Building number, suite, or unit (e.g., 'Unit 5')",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dealer_street",
+            "label": "Street Address",
+            "name": "street",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Street address",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dealer_city",
+            "label": "City",
+            "name": "city",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "City name",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dealer_region",
+            "label": "Dealer Region",
+            "name": "dealer_region",
+            "aria-label": "",
+            "type": "taxonomy",
+            "instructions": "Select the dealer's region (state\/province). The parent country is inherited automatically.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "66",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "dealer_region",
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "id",
+            "field_type": "select",
+            "allow_null": 1,
+            "multiple": 0
+        },
+        {
+            "key": "field_dealer_zip",
+            "label": "Zip\/Postal Code",
+            "name": "zip",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Zip or postal code",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dealer_phone",
+            "label": "Phone",
+            "name": "phone",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Phone number",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dealer_website",
+            "label": "Website",
+            "name": "website",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Dealer website URL",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dealer_contact_email",
+            "label": "Contact Email",
+            "name": "contact_email",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "The dealer contact email address.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dealer_retail_location",
+            "label": "Retail Location",
+            "name": "retail_location",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Check if this is a Retail Location.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_dealer_custom_installation",
+            "label": "Custom Installation",
+            "name": "custom_installation",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Check if this dealer offers Custom Installation.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_dealer_custom_integrator",
+            "label": "Custom Integrator (Appointment Only)",
+            "name": "custom_integrator",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Check if this dealer is a Custom Integrator (Appointment Only).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_dealer_service_center",
+            "label": "Service Center",
+            "name": "service_center",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Check if this dealer is a Service Center.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_dealer_premium_dealer",
+            "label": "Premium Dealer",
+            "name": "premium_dealer",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Check if this is a Premium Dealer.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_dealer_michi_dealer",
+            "label": "Michi Dealer",
+            "name": "michi_dealer",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Check if this is a Michi Dealer.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_dealer_regional_distributor",
+            "label": "Regional Distributor",
+            "name": "regional_distributor",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Check if this dealer is a Regional Distributor.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_dealer_owner",
+            "label": "Owner",
+            "name": "owner",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The owner\/manager username or identifier.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "michi_dealer"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1777660800
+}
