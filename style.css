@@ -1,7 +1,7 @@
 /*
 Theme Name: Michi Theme
 Theme URI: https://www.wpbeaverbuilder.com
-Version: 1.0.3
+Version: 1.1.0
 Description: A custom child theme for Michi site.
 Author: The Mighty Mo
 Author URI: https://www.themightymo.com
@@ -10,66 +10,3 @@ Text Domain: michi-theme
 */
 
 /* Add your custom styles here...Remember to change the Version number above! */
-
-.fl-page-content {
-	background-color: #000000;
-}
-
-#menu-experience-michi .menu-item.current_page_item {
-	border-bottom: 1px solid #4a80c4;
-}
-
-.fl-module-content {
-	margin-top: 0px;
-	margin-right: 20px;
-	margin-bottom: 0px;
-	margin-left: 20px;
-}
-
-.fl-node-ph2ojx5qk9s6 .fl-menu .menu,
-.fl-node-ph2ojx5qk9s6 .fl-menu .menu > li {
-	font-family: Montserrat, sans-serif !important;
-	font-weight: 700 !important;
-	font-size: 13px !important;
-	line-height: 1 !important;
-	letter-spacing: 1.1px !important;
-}
-
-.fl-node-dxthqvog1ibn .fl-menu .menu,
-.fl-node-dxthqvog1ibn .fl-menu .menu > li {
-	font-family: Montserrat, sans-serif !important;
-	font-weight: 700 !important;
-	font-size: 13px !important;
-	line-height: 1 !important;
-	letter-spacing: 1.1px !important;
-}
-
-.fl-node-3lptyqbw291j .fl-row-content {
-	max-width: 1200px;
-	margin-left: 2rem;
-	margin-right: 2rem;
-}
-
-.fl-node-6h92xadqinz5 {
-	max-width: 1200px;
-	margin-left: 2rem;
-	margin-right: 2rem;
-}
-
-.fl-node-ph2ojx5qk9s6 .fl-menu .menu,
-.fl-node-ph2ojx5qk9s6 .fl-menu .menu > li {
-	font-family: Montserrat, sans-serif !important;
-	font-weight: 700 !important;
-	font-size: 13px !important;
-	line-height: 1 !important;
-	letter-spacing: 1.1px !important;
-	margin-left: 1.5rem;
-	margin-right: auto;
-}
-
-.fl-node-ph2ojx5qk9s6 .menu a {
-	padding-top: 0px;
-	padding-right: 6px;
-	padding-bottom: 0px;
-	padding-left: 0px;
-}

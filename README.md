@@ -20,7 +20,7 @@ Custom WordPress child theme for the Michi site, based on `bb-theme`.
 ## Directory layout
 
 ```text
-bb-theme-child/
+michi-theme/
 ├── functions.php
 ├── style.css
 ├── inc/
@@ -46,7 +46,7 @@ bb-theme-child/
 
 Theme is loaded as a standard WP child theme from:
 
-`wp-content/themes/bb-theme-child`
+`wp-content/themes/michi-theme`
 
 Most PHP customizations are split into files required by `functions.php`.
 

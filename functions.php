@@ -18,9 +18,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $theme_version = wp_get_theme()->get( 'Version' );
 
-define( 'FL_CHILD_THEME_DIR', get_stylesheet_directory() );
-define( 'FL_CHILD_THEME_URL', get_stylesheet_directory_uri() );
+define( 'MICHI_THEME_DIR', get_stylesheet_directory() );
+define( 'MICHI_THEME_URL', get_stylesheet_directory_uri() );
 define( 'MICHI_THEME_VERSION', $theme_version );
+define( 'MICHI_THEME_CLASS_PATH', untrailingslashit( get_stylesheet_directory() . '/inc/class' ) );
+define( 'MICHI_THEME', 'MICHI_TMM' );
 
 // Updater
 require_once get_stylesheet_directory() . '/updater/updater.php';
@@ -42,10 +44,4 @@ $update_checker->setBranch( 'master' );
  * All customizations are organized into separate files in the /inc directory
  * for better organization, security, and maintainability.
  */
-require_once get_stylesheet_directory() . '/inc/enqueue.php';
-require_once get_stylesheet_directory() . '/inc/acf-config.php';
-require_once get_stylesheet_directory() . '/inc/post-types.php';
-require_once get_stylesheet_directory() . '/inc/rest-api.php';
-require_once get_stylesheet_directory() . '/inc/dealer-finder.php';
-require_once get_stylesheet_directory() . '/inc/dealer-migration.php';
-require_once get_stylesheet_directory() . '/slider/slider.php';
+require MICHI_THEME_DIR . '/inc/autoloader.php';

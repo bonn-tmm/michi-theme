@@ -1,0 +1,112 @@
+import { store, getContext, getElement } from '@wordpress/interactivity';
+
+const navContainer = document.getElementById('michi-nav-container');
+const mainContainer = document.getElementById('main-query-box');
+const HEADER_OFFSET = 100;
+
+const setLoadingState = (isLoading) => {
+	if (!mainContainer) return;
+
+	mainContainer.classList.toggle('is-loading', isLoading);
+	mainContainer.setAttribute('aria-busy', isLoading ? 'true' : 'false');
+};
+
+const replaceMainContent = (html) => {
+	if (!mainContainer) return false;
+
+	const parsedDocument = new DOMParser().parseFromString(html, 'text/html');
+	const newContent = parsedDocument.getElementById('main-query-box');
+
+	if (!newContent) return false;
+
+	mainContainer.innerHTML = newContent.innerHTML;
+	return true;
+};
+
+const scrollToNavigation = () => {
+	if (!navContainer) return;
+
+	const elementPosition =
+		navContainer.getBoundingClientRect().top + window.pageYOffset;
+
+	window.scrollTo({
+		top: elementPosition - HEADER_OFFSET,
+		behavior: 'smooth',
+	});
+};
+
+store('michi-categories', {
+	state: {
+		isFetching: false,
+		isOpen: false,
+
+		get isActive() {
+			const context = getContext();
+			return context.currentFilter === context.filter;
+		},
+		get currentLabel() {
+			const context = getContext();
+			return context.currentLabel;
+		},
+	},
+
+	actions: {
+		*navigate(event) {
+			event.preventDefault();
+
+			const { state } = store('michi-categories');
+			const context = getContext();
+			const link = event.currentTarget;
+			const url = link?.href;
+
+			if (state.isFetching || !url) return;
+			state.isOpen = false;
+			context.currentFilter = context.filter;
+			state.isFetching = true;
+			context.currentLabel = 'Loading...';
+			setLoadingState(true);
+
+			try {
+				const response = yield fetch(url);
+				if (!response.ok) throw new Error('Network error');
+
+				const html = yield response.text();
+				const didUpdateContent = replaceMainContent(html);
+
+				if (didUpdateContent) {
+					window.history.pushState({ url }, '', url);
+				}
+			} catch {
+				window.location.href = url;
+			} finally {
+				state.isFetching = false;
+				context.currentLabel = context.label;
+				setLoadingState(false);
+				scrollToNavigation();
+			}
+		},
+		toggleMenu(event) {
+			event.preventDefault();
+			const { state } = store('michi-categories');
+			state.isOpen = !state.isOpen;
+		},
+	},
+	callbacks: {
+		setupOutsideClick: () => {
+			const { state } = store('michi-categories');
+			const { ref } = getElement();
+
+			const handleOutsideClick = (event) => {
+				if (!ref.contains(event.target) && state.isOpen) {
+					state.isOpen = false;
+				}
+			};
+
+			window.addEventListener('click', handleOutsideClick);
+
+			return () => {
+				window.removeEventListener('click', handleOutsideClick);
+			};
+		},
+	},
+});
