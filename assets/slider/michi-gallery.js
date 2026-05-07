@@ -35,6 +35,12 @@ const initGallery = (scope) => {
 	const swiperMain = new window.Swiper(mainEl, {
 		spaceBetween: 0,
 		autoHeight: true,
+		loop: true,
+		autoplay: {
+			delay: 4500,
+			disableOnInteraction: false,
+			pauseOnMouseEnter: false,
+		},
 		thumbs: { swiper: swiperThumbs },
 	});
 	gallerySwiperMap.set(scope, swiperMain);
