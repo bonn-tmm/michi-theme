@@ -352,27 +352,6 @@
 	font-family: 'Montserrat';
 }
 
-.fl-builder-content h1,
-.fl-builder-content h2,
-.fl-builder-content h3,
-.fl-builder-content h4,
-.fl-builder-content h5,
-.fl-builder-content h6 {
-	font-family: 'Montserrat';
-	/* font-weight: 800; */
-	font-weight: 700;
-}
-
-.fl-builder-content .fl-node-zkgp8rd7m1y4.fl-module-rich-text.fl-rich-text * {
-	color: #5680bf;
-	font-weight: 600;
-}
-
-a:hover,
-a:focus {
-	text-decoration: none !important;
-}
-
 #dealer-listings h2.state-heading {
 	font-weight: 900;
 	font-size: 28px;
@@ -397,7 +376,7 @@ a:focus {
 .michi-dealer-finder .empty-region-heading {
 	font-size: 15px;
 	font-weight: 700;
-	color: #fff;
+	color: var(--fl-global-heading, #fff);
 	margin: 0 0 19px 0;
 	line-height: 24.75px;
 	letter-spacing: -0.15px;
@@ -406,20 +385,11 @@ a:focus {
 .empty-region-text {
 	font-size: 13px;
 	line-height: 20.8px;
-	color: #888;
+	color: var(--fl-global-body, #999);
 	margin: 0 0 19px 0;
 	font-family: 'Inter';
 	font-weight: 300;
 	max-width: 870px;
-}
-
-.empty-region-description {
-	margin-bottom: 16px;
-	color: #888;
-	font-size: 14px;
-	line-height: 1.7;
-	font-family: 'Inter';
-	font-weight: 300;
 }
 
 .empty-region-cta {
