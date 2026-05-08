@@ -32,6 +32,7 @@ $instances = array(
 	'Enqueue',
 	'Categories',
 	'Slider',
+	'ProductGrid',
 );
 
 foreach ( $instances as $instance ) {
