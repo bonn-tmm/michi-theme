@@ -55,26 +55,23 @@ class DealerFinder {
 			'michi_dealer_finder'
 		);
 
-		// Sanitize attributes.
-		$heading = sanitize_text_field( $atts['heading'] );
-		$subheading = sanitize_text_field( $atts['subheading'] );
 		$show_sidebar = in_array( strtolower( $atts['show_sidebar'] ), array( 'yes', '1', 'true' ), true );
 
-		// Enqueue scripts and styles.
 		$this->enqueue_dealer_finder_assets();
 
 		$countries_list = $rest_api->get_countries();
-		$selected_country = sanitize_text_field( get_query_var( 'dealer_country', '' ) );
+		$selected_country = sanitize_text_field( get_query_var( 'dealer_country', '' ) ) ?: 'united-states';
 		$selected_state = sanitize_text_field( get_query_var( 'dealer_state', '' ) );
 		$states_list = $rest_api->get_states_by_country_slug( $selected_country );
 		$dealers_by_country_and_state = $rest_api->get_dealers_by_country_and_state();
-		$selected_country_name = $rest_api->get_country_name_by_slug( $selected_country );
-		$selected_state_name = $rest_api->get_state_name_by_slug( $selected_state, $selected_country );
+		$selected_country_name = $rest_api->get_country_name_by_slug( $selected_country ) ?: 'United States';
+		$selected_state_name = $rest_api->get_state_name_by_slug( $selected_state, $selected_country ) ?: '';
 
 		$selected_dealers = array();
 		if ( $selected_country_name && $selected_state_name && isset( $dealers_by_country_and_state[ $selected_country_name ][ $selected_state_name ] ) ) {
 			$selected_dealers = $dealers_by_country_and_state[ $selected_country_name ][ $selected_state_name ];
 		}
+		$dealer_count = \count( $selected_dealers );
 
 		wp_interactivity_state(
 			'michi-dealer-finder',
@@ -92,18 +89,17 @@ class DealerFinder {
 			'selectedCountryName' => $selected_country_name,
 			'selectedStateName' => $selected_state_name,
 			'noDealersText' => 'There are no authorized Michi dealers in ' . $selected_state_name . ' yet — but we’re growing. If you’re a specialist audio retailer passionate about high-performance audio, we’d love to hear from you.',
+			'dealersList' => $selected_dealers,
+			'dealerCount' => $dealer_count,
+			'dealerCountText' => 'NO DEALERS CURRENTLY LISTED',
 		);
 		if ( $selected_country_name && $selected_state_name ) {
 			$context_args['dealersList'] = $selected_dealers;
-			$dealer_count = count( $selected_dealers );
-			$context_args['dealerCount'] = $dealer_count;
 			if ( $dealer_count > 0 ) {
 				$context_args['dealerCountText'] = sprintf(
 					_n( '%s Authorized Dealer', '%s Authorized Dealers', $dealer_count, 'michi-theme' ),
 					$dealer_count
 				);
-			} else {
-				$context_args['dealerCountText'] = 'NO DEALERS CURRENTLY LISTED';
 			}
 		}
 		// Build the HTML output.

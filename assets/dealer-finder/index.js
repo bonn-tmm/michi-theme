@@ -45,23 +45,24 @@ store('michi-dealer-finder', {
 			const { state } = store('michi-dealer-finder');
 			const context = getContext();
 			state.selectedState = '';
+
 			if (!context.item.slug) return;
 			state.selectedState = context.item.slug;
 			context.selectedStateName = context.item.name;
 			context.dealersList =
 				state.dealers?.[context.selectedCountryName]?.[context.item.name] ?? [];
 			context.dealerCount = context.dealersList.length;
+
 			if (context.dealerCount > 0) {
 				context.dealerCountText = `${context.dealerCount} Authorized Dealer${context.dealerCount === 1 ? '' : 's'}`;
+				context.noDealersText = '';
 			} else {
 				context.dealerCountText = 'NO DEALERS CURRENTLY LISTED';
+				context.noDealersText =
+					'There are no authorized Michi dealers in ' +
+					context.selectedStateName +
+					' yet — but we’re growing. If you’re a specialist audio retailer passionate about high-performance audio, we’d love to hear from you.';
 			}
-			context.noDealersText =
-				'There are no authorized Michi dealers in ' +
-				context.selectedStateName +
-				' yet — but we’re growing. If you’re a specialist audio retailer passionate about high-performance audio, we’d love to hear from you.';
-
-			console.log(context.dealersList);
 
 			updateUrl(state.selectedCountry, state.selectedState, state.baseUrl);
 		},
