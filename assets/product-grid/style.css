@@ -50,7 +50,7 @@
 	font-weight: 300;
 	font-size: 16px;
 	line-height: 22.75px;
-	color: #999;
+	color: var(--fl-global-body, #999);
 	margin-bottom: 29px;
 }
 .product-loop-tags span {
