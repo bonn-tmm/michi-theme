@@ -32,7 +32,7 @@ class Categories {
 	}
 	public function michi_categories_shortcode() {
 		$all_url = get_post_type_archive_link( 'michi-product' );
-		$button_text = 'All Products';
+		$button_text = 'All';
 		$currentFilter = "all";
 		if ( is_tax( 'product-category' ) ) {
 			$current_term = get_queried_object();
@@ -66,10 +66,10 @@ class Categories {
 
   <ul id="michi-categories" class="michi-product-categories" data-wp-class--is-loading="state.isFetching">
     <li>
-      <a href="<?php echo esc_url( $all_url ); ?>" class="category-pill" data-name="All Products"
+      <a href="<?php echo esc_url( $all_url ); ?>" class="category-pill" data-name="All"
         data-wp-on--click="actions.navigate" data-wp-class--is-active="state.isActive"
-        data-wp-context='{ "filter": "all", "label": "All Products" }'>
-        All Products
+        data-wp-context='{ "filter": "all", "label": "All" }'>
+        All
       </a>
     </li>
 
