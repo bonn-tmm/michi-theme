@@ -168,7 +168,8 @@ class DealerFinder {
             <p class="dealer-address" data-wp-text="context.item.fullAddress"></p>
             <div class="dealer-contact-info">
               <span class="dealer-phone"><strong>PHONE</strong>
-                <div data-wp-text="context.item.phone"></div>
+                <a data-wp-bind--href="context.item.phoneUrl" data-wp-text="context.item.phone" target="_blank"
+                  rel="noopener"></a>
               </span>
 
               <span class="dealer-website">

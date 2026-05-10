@@ -33,6 +33,7 @@ $instances = array(
 	'Categories',
 	'Slider',
 	'ProductGrid',
+	'BeaverBuilder',
 );
 
 foreach ( $instances as $instance ) {
