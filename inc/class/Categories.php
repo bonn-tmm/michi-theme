@@ -26,7 +26,7 @@ class Categories {
 		wp_enqueue_script_module(
 			'michi-categories-interactivity',
 			MICHI_THEME_URL . '/assets/categories/categories.js',
-			array( '@wordpress/interactivity' ),
+			array( '@wordpress/interactivity', '@wordpress/interactivity-router' ),
 			MICHI_THEME_VERSION
 		);
 	}
@@ -67,7 +67,7 @@ class Categories {
   <ul id="michi-categories" class="michi-product-categories" data-wp-class--is-loading="state.isFetching">
     <li>
       <a href="<?php echo esc_url( $all_url ); ?>" class="category-pill" data-name="All"
-        data-wp-on--click="actions.navigate" data-wp-class--is-active="state.isActive"
+        data-wp-on--click="actions.goToPage" data-wp-class--is-active="state.isActive"
         data-wp-context='{ "filter": "all", "label": "All" }'>
         All
       </a>
@@ -83,7 +83,7 @@ class Categories {
 						?>
     <li>
       <a href="<?php echo esc_url( $term_link ); ?>" class="category-pill <?php echo $active_class; ?>"
-        data-name="<?php echo esc_attr( $term->name ); ?>" data-wp-on--click="actions.navigate"
+        data-name="<?php echo esc_attr( $term->name ); ?>" data-wp-on--click="actions.goToPage"
         data-wp-class--is-active="state.isActive" data-filter="<?php echo esc_attr( $term->slug ); ?>"
         data-wp-context='{ "filter": "<?php echo esc_attr( $term->slug ); ?>", "label": "<?php echo esc_attr( $term->name ); ?>" }'>
         <?php echo esc_html( $term->name ); ?>

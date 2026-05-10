@@ -1,4 +1,9 @@
-import { store, getContext, getElement } from '@wordpress/interactivity';
+import {
+	store,
+	getContext,
+	getElement,
+	withSyncEvent,
+} from '@wordpress/interactivity';
 
 const navContainer = document.getElementById('michi-nav-container');
 const mainContainer = document.getElementById('main-query-box');
@@ -51,6 +56,26 @@ store('michi-categories', {
 	},
 
 	actions: {
+		goToPage: withSyncEvent(function* (event) {
+			event.preventDefault();
+			const { state } = store('michi-categories');
+			const context = getContext();
+			const link = event.currentTarget;
+			const url = link?.href;
+			if (state.isFetching || !url) return;
+			state.isFetching = true;
+			state.isOpen = false;
+			context.currentFilter = context.filter;
+			context.currentLabel = 'Loading...';
+			setLoadingState(true);
+			const { actions } = yield import('@wordpress/interactivity-router');
+			yield actions.navigate(url);
+			actions.prefetch(url);
+			state.isFetching = false;
+			context.currentLabel = context.label;
+			setLoadingState(false);
+			scrollToNavigation();
+		}),
 		*navigate(event) {
 			event.preventDefault();
 

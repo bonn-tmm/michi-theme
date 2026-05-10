@@ -13,7 +13,7 @@
 .dealer-finder-label {
 	font-size: 0.875rem;
 	letter-spacing: 0.1em;
-	color: #999;
+	color: var(--fl-global-body, #999);
 	margin-bottom: 0.5rem;
 	font-weight: 500;
 }
@@ -48,7 +48,7 @@
 	letter-spacing: 0.05em;
 	margin-bottom: 0.5rem;
 	font-weight: 500;
-	color: #999;
+	color: var(--fl-global-body, #999);
 }
 
 .filter-group select {
@@ -83,7 +83,7 @@
 
 .filter-group select:focus {
 	outline: none;
-	border-color: #999;
+	border-color: var(--fl-global-body, #999);
 }
 
 .filter-group select:disabled {
@@ -131,7 +131,7 @@
 .dealer-states-sidebar h3 {
 	font-size: 12px;
 	letter-spacing: 2.25px;
-	color: #999;
+	color: var(--fl-global-body, #999);
 	margin-bottom: 12px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -161,13 +161,14 @@
 	line-height: 18px;
 	font-family: 'Montserrat';
 	border-left: 1.6px solid transparent;
+	cursor: pointer;
 }
 
 .dealer-states-sidebar a:hover,
 .dealer-states-sidebar a.active {
 	background-color: #10141a;
-	border-left: 1.6px solid #4a80c4;
-	color: #42649a;
+	border-left: 1.6px solid var(--fl-global-primary, #4a80c4);
+	color: var(--fl-global-primary, #4a80c4);
 }
 .dealer-finder-content {
 	position: relative;
@@ -210,7 +211,7 @@
 .dealer-count {
 	font-size: 10px;
 	letter-spacing: 1px;
-	color: #999;
+	color: var(--fl-global-body, #999);
 	line-height: 16.5px;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -236,8 +237,8 @@
 }
 
 .michi-dealer-finder .dealer-card .dealer-name {
-	font-size: 15px;
-	font-weight: 700;
+	font-size: 16px;
+	font-weight: 800;
 	margin-bottom: 7.35px;
 	margin-top: 0;
 	color: #fff;
@@ -247,7 +248,7 @@
 
 .dealer-card p {
 	margin: 0;
-	color: #888;
+	color: var(--fl-global-body, #999);
 	line-height: 21.45px;
 	font-size: 13px;
 	font-family: 'Inter';
@@ -255,7 +256,7 @@
 }
 
 .dealer-address {
-	color: #888;
+	color: var(--fl-global-body, #999);
 	margin-bottom: 1rem;
 	line-height: 1.5;
 }
@@ -274,12 +275,12 @@
 	align-items: baseline;
 	gap: 0.5rem;
 	font-size: 13px;
-	color: #aaaaaa;
+	color: var(--fl-global-body, #999);
 }
 
 .dealer-card .dealer-contact-info strong,
 .dealer-card .dealer-types strong {
-	color: #999;
+	color: var(--fl-global-body, #999);
 	font-size: 8px;
 	line-height: 13.2px;
 	letter-spacing: 1.6px;
@@ -287,16 +288,14 @@
 	font-weight: 700;
 }
 
-.dealer-email a,
-.dealer-website a {
-	color: #aaaaaa;
+.dealer-card a {
+	color: var(--fl-global-body, #999);
 	text-decoration: none;
 	transition: color 0.2s;
 }
 
-.dealer-email a:hover,
-.dealer-website a:hover {
-	color: #fff;
+.dealer-card a:hover {
+	color: var(--fl-global-primary, #4a80c4);
 }
 
 .dealer-types {
@@ -313,7 +312,7 @@
 }
 
 .no-dealers {
-	color: #999;
+	color: var(--fl-global-body, #999);
 	font-style: italic;
 	padding: 2rem 0;
 }
