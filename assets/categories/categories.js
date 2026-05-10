@@ -76,40 +76,6 @@ store('michi-categories', {
 			setLoadingState(false);
 			scrollToNavigation();
 		}),
-		*navigate(event) {
-			event.preventDefault();
-
-			const { state } = store('michi-categories');
-			const context = getContext();
-			const link = event.currentTarget;
-			const url = link?.href;
-
-			if (state.isFetching || !url) return;
-			state.isOpen = false;
-			context.currentFilter = context.filter;
-			state.isFetching = true;
-			context.currentLabel = 'Loading...';
-			setLoadingState(true);
-
-			try {
-				const response = yield fetch(url);
-				if (!response.ok) throw new Error('Network error');
-
-				const html = yield response.text();
-				const didUpdateContent = replaceMainContent(html);
-
-				if (didUpdateContent) {
-					window.history.pushState({ url }, '', url);
-				}
-			} catch {
-				window.location.href = url;
-			} finally {
-				state.isFetching = false;
-				context.currentLabel = context.label;
-				setLoadingState(false);
-				scrollToNavigation();
-			}
-		},
 		toggleMenu(event) {
 			event.preventDefault();
 			const { state } = store('michi-categories');
