@@ -11,21 +11,8 @@ const HEADER_OFFSET = 100;
 
 const setLoadingState = (isLoading) => {
 	if (!mainContainer) return;
-
 	mainContainer.classList.toggle('is-loading', isLoading);
 	mainContainer.setAttribute('aria-busy', isLoading ? 'true' : 'false');
-};
-
-const replaceMainContent = (html) => {
-	if (!mainContainer) return false;
-
-	const parsedDocument = new DOMParser().parseFromString(html, 'text/html');
-	const newContent = parsedDocument.getElementById('main-query-box');
-
-	if (!newContent) return false;
-
-	mainContainer.innerHTML = newContent.innerHTML;
-	return true;
 };
 
 const scrollToNavigation = () => {
