@@ -33,7 +33,7 @@ class DealerFinder {
 
 		wp_enqueue_script_module(
 			'michi-dealer-finder-view',
-			MICHI_THEME_URL . '/assets/dealer-finder/index.js',
+			MICHI_THEME_URL . '/assets/dealer-finder/dealer-finder.js',
 			array( '@wordpress/interactivity' ),
 			MICHI_THEME_VERSION
 		);
@@ -106,88 +106,87 @@ class DealerFinder {
 		ob_start();
 
 		?>
-<div class="michi-dealer-finder" data-wp-interactive="michi-dealer-finder"
-  <?php echo wp_interactivity_data_wp_context( $context_args ); ?>>
-  <div class="dealer-finder-content">
-    <?php if ( $show_sidebar ) : ?>
-    <aside class="dealer-states-sidebar">
-      <div class="dealer-finder-filters">
-        <div class="filter-group">
-          <label for="country-select"><?php esc_html_e( 'CHOOSE A COUNTRY', 'michi-theme' ); ?></label>
+		<div class="michi-dealer-finder" data-wp-interactive="michi-dealer-finder" <?php echo wp_interactivity_data_wp_context( $context_args ); ?>>
+			<div class="dealer-finder-content">
+				<?php if ( $show_sidebar ) : ?>
+					<aside class="dealer-states-sidebar">
+						<div class="dealer-finder-filters">
+							<div class="filter-group">
+								<label for="country-select"><?php esc_html_e( 'CHOOSE A COUNTRY', 'michi-theme' ); ?></label>
 
-          <select id="country-select" data-wp-bind--value="state.selectedCountry"
-            data-wp-on--change="actions.selectCountry">
-            <option value="">
-              <?php esc_html_e( 'Select a country', 'michi-theme' ); ?>
-            </option>
-            <template data-wp-each="state.countries" data-wp-each-key="context.item.slug">
-              <option data-wp-bind--value="context.item.slug" data-wp-text="context.item.name"></option>
-            </template>
-          </select>
+								<select id="country-select" data-wp-bind--value="state.selectedCountry"
+									data-wp-on--change="actions.selectCountry">
+									<option value="">
+										<?php esc_html_e( 'Select a country', 'michi-theme' ); ?>
+									</option>
+									<template data-wp-each="state.countries" data-wp-each-key="context.item.slug">
+										<option data-wp-bind--value="context.item.slug" data-wp-text="context.item.name"></option>
+									</template>
+								</select>
 
-        </div>
-      </div>
-      <h3 data-wp-bind--hidden="!state.selectedCountry"><?php esc_html_e( 'STATE/REGION', 'michi-theme' ); ?></h3>
-      <ul id="states-list">
-        <template data-wp-each="context.statesList" data-wp-each-key="context.item.slug">
-          <li>
-            <a data-wp-bind--href="state.baseUrl + '/' + state.selectedCountry + '/' + context.item.slug"
-              data-wp-on--click="actions.selectState" data-wp-class--active="callbacks.isStateActive"
-              data-wp-text="context.item.name"></a>
-          </li>
-        </template>
-      </ul>
-    </aside>
-    <?php endif; ?>
-    <div class="dealer-results">
+							</div>
+						</div>
+						<h3 data-wp-bind--hidden="!state.selectedCountry"><?php esc_html_e( 'STATE/REGION', 'michi-theme' ); ?></h3>
+						<ul id="states-list">
+							<template data-wp-each="context.statesList" data-wp-each-key="context.item.slug">
+								<li>
+									<a data-wp-bind--href="state.baseUrl + '/' + state.selectedCountry + '/' + context.item.slug"
+										data-wp-on--click="actions.selectState" data-wp-class--active="callbacks.isStateActive"
+										data-wp-text="context.item.name"></a>
+								</li>
+							</template>
+						</ul>
+					</aside>
+				<?php endif; ?>
+				<div class="dealer-results">
 
-      <p data-wp-bind--hidden="!callbacks.shouldShowStatePrompt">
-        <?php esc_html_e( 'Please select a state or region from the list.', 'michi-theme' ); ?>
-      </p>
+					<p data-wp-bind--hidden="!callbacks.shouldShowStatePrompt">
+						<?php esc_html_e( 'Please select a state or region from the list.', 'michi-theme' ); ?>
+					</p>
 
-      <p data-wp-bind--hidden="!callbacks.shouldShowCountryPrompt">
-        <?php esc_html_e( 'Please select a country to begin.', 'michi-theme' ); ?>
-      </p>
+					<p data-wp-bind--hidden="!callbacks.shouldShowCountryPrompt">
+						<?php esc_html_e( 'Please select a country to begin.', 'michi-theme' ); ?>
+					</p>
 
-      <div id="dealer-listings" data-wp-bind--hidden="!state.selectedState">
-        <h2 class="state-heading" data-wp-bind--id="state.selectedState" data-wp-text="context.selectedStateName">
-        </h2><span class="dealer-count" data-wp-text="context.dealerCountText"></span>
+					<div id="dealer-listings" data-wp-bind--hidden="!state.selectedState">
+						<h2 class="state-heading" data-wp-bind--id="state.selectedState" data-wp-text="context.selectedStateName">
+						</h2><span class="dealer-count" data-wp-text="context.dealerCountText"></span>
 
-        <div class="empty-region-card" data-wp-bind--hidden="!callbacks.isDealersListEmpty">
-          <div class="empty-region-icon"><img src="<?php echo home_url(); ?>/wp-content/uploads/2026/04/shake.png"
-              alt="Become a dealer"></div>
-          <h3 class="empty-region-heading">Become a Michi Dealer</h3>
-          <p class="empty-region-text" data-wp-text="context.noDealersText"></p>
-          <a href="/become-a-dealer" class="empty-region-cta">Apply to become a dealer →</a>
-        </div>
+						<div class="empty-region-card" data-wp-bind--hidden="!callbacks.isDealersListEmpty">
+							<div class="empty-region-icon"><img src="<?php echo home_url(); ?>/wp-content/uploads/2026/04/shake.png"
+									alt="Become a dealer"></div>
+							<h3 class="empty-region-heading">Become a Michi Dealer</h3>
+							<p class="empty-region-text" data-wp-text="context.noDealersText"></p>
+							<a href="/become-a-dealer" class="empty-region-cta">Apply to become a dealer →</a>
+						</div>
 
 
-        <template data-wp-each="context.dealersList" data-wp-each-key="context.item.id">
-          <div class="dealer-card">
-            <h3 class="dealer-name" data-wp-text="context.item.name"></h3>
-            <p class="dealer-address" data-wp-text="context.item.fullAddress"></p>
-            <div class="dealer-contact-info">
-              <span class="dealer-phone"><strong>PHONE</strong>
-                <a data-wp-bind--href="context.item.phoneUrl" data-wp-text="context.item.phone" target="_blank"
-                  rel="noopener"></a>
-              </span>
+						<template data-wp-each="context.dealersList" data-wp-each-key="context.item.id">
+							<div class="dealer-card">
+								<h3 class="dealer-name" data-wp-text="context.item.name"></h3>
+								<p class="dealer-address" data-wp-text="context.item.fullAddress"></p>
+								<div class="dealer-contact-info">
+									<span class="dealer-phone"><strong>PHONE</strong>
+										<a data-wp-bind--href="context.item.phoneUrl" data-wp-text="context.item.phone" target="_blank"
+											rel="noopener"></a>
+									</span>
 
-              <span class="dealer-website">
-                <strong>WEB</strong>
-                <a data-wp-bind--href="context.item.websiteUrl" target="_blank" rel="noopener"
-                  data-wp-text="context.item.website"></a>
-              </span>
-            </div>
-            <p class="dealer-types"><strong>SERVICES:</strong>
-              <span data-wp-text="context.item.services"></span>
-            </p>
-          </div>
-        </template>
-      </div>
-    </div>
-  </div>
-</div>
-<?php
+									<span class="dealer-website">
+										<strong>WEB</strong>
+										<a data-wp-bind--href="context.item.websiteUrl" target="_blank" rel="noopener"
+											data-wp-text="context.item.website"></a>
+									</span>
+								</div>
+								<p class="dealer-types"><strong>SERVICES:</strong>
+									<span data-wp-text="context.item.services"></span>
+								</p>
+							</div>
+						</template>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
 		$html = ob_get_clean();
 		return function_exists( 'wp_interactivity_process_directives' )
 			? wp_interactivity_process_directives( $html )
