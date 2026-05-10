@@ -5,85 +5,121 @@ import {
 	withSyncEvent,
 } from '@wordpress/interactivity';
 
+const STORE_NAME = 'michi-categories';
+const SCROLL_OFFSET_PX = 100;
+
+// Archive layout: these nodes sit outside the interactive region markup.
 const navContainer = document.getElementById('michi-nav-container');
-const mainContainer = document.getElementById('main-query-box');
-const HEADER_OFFSET = 100;
+const mainQueryBox = document.getElementById('main-query-box');
 
-const setLoadingState = (isLoading) => {
-	if (!mainContainer) return;
-	mainContainer.classList.toggle('is-loading', isLoading);
-	mainContainer.setAttribute('aria-busy', isLoading ? 'true' : 'false');
-};
+function setMainQueryLoading(isBusy) {
+	if (!mainQueryBox) return;
 
-const scrollToNavigation = () => {
+	mainQueryBox.classList.toggle('is-loading', isBusy);
+	mainQueryBox.setAttribute('aria-busy', isBusy ? 'true' : 'false');
+}
+
+function scrollToCategoryNav() {
 	if (!navContainer) return;
 
-	const elementPosition =
-		navContainer.getBoundingClientRect().top + window.pageYOffset;
+	const y = navContainer.getBoundingClientRect().top + window.scrollY;
 
 	window.scrollTo({
-		top: elementPosition - HEADER_OFFSET,
+		top: y - SCROLL_OFFSET_PX,
 		behavior: 'smooth',
 	});
-};
+}
 
-store('michi-categories', {
+function beginCategoryNavigation(state, context) {
+	state.isFetching = true;
+	state.isOpen = false;
+
+	context.currentFilter = context.filter;
+	context.currentLabel = 'Loading...';
+
+	setMainQueryLoading(true);
+}
+
+function endCategoryNavigation(state, context) {
+	state.isFetching = false;
+	context.currentLabel = context.label;
+
+	setMainQueryLoading(false);
+	scrollToCategoryNav();
+}
+
+let routerActions = null;
+
+store(STORE_NAME, {
 	state: {
 		isFetching: false,
 		isOpen: false,
 
 		get isActive() {
 			const context = getContext();
+
 			return context.currentFilter === context.filter;
 		},
+
 		get currentLabel() {
-			const context = getContext();
-			return context.currentLabel;
+			return getContext().currentLabel;
 		},
 	},
 
 	actions: {
 		goToPage: withSyncEvent(function* (event) {
 			event.preventDefault();
-			const { state } = store('michi-categories');
+
+			const { state } = store(STORE_NAME);
 			const context = getContext();
-			const link = event.currentTarget;
-			const url = link?.href;
-			if (state.isFetching || !url) return;
-			state.isFetching = true;
-			state.isOpen = false;
-			context.currentFilter = context.filter;
-			context.currentLabel = 'Loading...';
-			setLoadingState(true);
-			const { actions } = yield import('@wordpress/interactivity-router');
-			yield actions.navigate(url);
-			actions.prefetch(url);
-			state.isFetching = false;
-			context.currentLabel = context.label;
-			setLoadingState(false);
-			scrollToNavigation();
+			const url = event.currentTarget?.href;
+
+			if (state.isFetching || !url) {
+				return;
+			}
+
+			beginCategoryNavigation(state, context);
+
+			try {
+				if (!routerActions) {
+					const router = yield import('@wordpress/interactivity-router');
+					routerActions = router.actions;
+				}
+				yield routerActions.navigate(url);
+				routerActions.prefetch(url);
+			} finally {
+				endCategoryNavigation(state, context);
+			}
 		}),
+
 		toggleMenu(event) {
 			event.preventDefault();
-			const { state } = store('michi-categories');
+
+			const { state } = store(STORE_NAME);
+
 			state.isOpen = !state.isOpen;
 		},
 	},
+
 	callbacks: {
-		setupOutsideClick: () => {
-			const { state } = store('michi-categories');
+		setupOutsideClick() {
+			const { state } = store(STORE_NAME);
 			const { ref } = getElement();
 
-			const handleOutsideClick = (event) => {
-				if (!ref.contains(event.target) && state.isOpen) {
-					state.isOpen = false;
+			const onWindowClick = (event) => {
+				const clickedInside = ref.contains(event.target);
+
+				if (clickedInside || !state.isOpen) {
+					return;
 				}
+
+				state.isOpen = false;
 			};
 
-			window.addEventListener('click', handleOutsideClick);
+			window.addEventListener('click', onWindowClick);
 
 			return () => {
-				window.removeEventListener('click', handleOutsideClick);
+				window.removeEventListener('click', onWindowClick);
 			};
 		},
 	},

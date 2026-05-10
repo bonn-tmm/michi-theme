@@ -57,7 +57,7 @@
 	display: inline-block;
 	padding: 4px 9px;
 	border: 1px solid #2c2c2c;
-	color: #999999;
+	color: var(--fl-global-body, #999);
 	font-weight: bold;
 	font-size: 8px;
 	text-decoration: none;
