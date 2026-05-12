@@ -34,6 +34,7 @@ $instances = array(
 	'Slider',
 	'ProductGrid',
 	'BeaverBuilder',
+	'Media',
 );
 
 foreach ( $instances as $instance ) {

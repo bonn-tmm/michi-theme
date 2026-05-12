@@ -136,6 +136,18 @@ class DealerFinder {
 								</li>
 							</template>
 						</ul>
+
+						<div class="filter-group" data-wp-bind--hidden="!state.selectedCountry">
+							<select id="state-list-mobile" data-wp-bind--value="state.selectedState"
+								data-wp-on--change="actions.selectStateMobile" class="mobile-state-select">
+								<option value="">
+									<?php esc_html_e( 'Select a state', 'michi-theme' ); ?>
+								</option>
+								<template data-wp-each="context.statesList" data-wp-each-key="context.item.slug">
+									<option data-wp-bind--value="context.item.slug" data-wp-text="context.item.name"></option>
+								</template>
+							</select>
+						</div>
 					</aside>
 				<?php endif; ?>
 				<div class="dealer-results">

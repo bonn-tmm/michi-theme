@@ -165,21 +165,21 @@ class Slider {
 
 		ob_start();
 		?>
-<div id="<?php echo esc_attr( $unique_id ); ?>" data-tmm-swiper-slider="<?php echo esc_attr( $unique_id ); ?>"
-  data-pagination="custom-pagination" class="<?php echo esc_attr( $classes ); ?> swiper">
-  <div class="swiper-wrapper">
-    <?php foreach ( $slides as $slide ) : ?>
-    <div class="swiper-slide">
-      <?php echo wp_get_attachment_image( $slide['id'], 'full', false, array( 'loading' => 'lazy' ) ); ?>
-      <?php if ( empty( $slide['id'] ) ) : ?>
-      <img src="<?php echo esc_url( $slide['url'] ); ?>" alt="<?php echo esc_attr( $slide['alt'] ); ?>"
-        loading="lazy" />
-      <?php endif; ?>
-    </div>
-    <?php endforeach; ?>
-  </div>
-</div>
-<?php
+		<div id="<?php echo esc_attr( $unique_id ); ?>" data-tmm-swiper-slider="<?php echo esc_attr( $unique_id ); ?>"
+			data-pagination="custom-pagination" class="<?php echo esc_attr( $classes ); ?> swiper">
+			<div class="swiper-wrapper">
+				<?php foreach ( $slides as $slide ) : ?>
+					<div class="swiper-slide">
+						<?php echo wp_get_attachment_image( $slide['id'], 'full', false, array( 'loading' => 'lazy' ) ); ?>
+						<?php if ( empty( $slide['id'] ) ) : ?>
+							<img src="<?php echo esc_url( $slide['url'] ); ?>" alt="<?php echo esc_attr( $slide['alt'] ); ?>"
+								loading="lazy" />
+						<?php endif; ?>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		</div>
+		<?php
 
 		return ob_get_clean();
 	}
@@ -206,51 +206,62 @@ class Slider {
 
 		ob_start();
 		?>
-<div id="<?php echo esc_attr( $unique_id ); ?>" class="michi-gallery-container"
-  data-gallery-id="<?php echo esc_attr( $unique_id ); ?>">
-  <div class="swiper main-slider">
-    <div class="swiper-wrapper michi-fancybox-gallery">
-      <?php foreach ( $images as $image ) : ?>
-      <?php
+		<div id="<?php echo esc_attr( $unique_id ); ?>" class="michi-gallery-container"
+			data-gallery-id="<?php echo esc_attr( $unique_id ); ?>">
+			<div class="swiper main-slider">
+				<div class="swiper-wrapper michi-fancybox-gallery">
+					<?php foreach ( $images as $image ) : ?>
+						<?php
 						$full_url = isset( $image['url'] ) ? $image['url'] : '';
 						$large_url = isset( $image['sizes']['large'] ) ? $image['sizes']['large'] : $full_url;
-						$img_width = isset( $image['width'] ) ? (int) $image['width'] : 0;
-						$img_height = isset( $image['height'] ) ? (int) $image['height'] : 0;
 						$img_alt = isset( $image['alt'] ) ? $image['alt'] : '';
+						$video_url = get_post_meta( $image['ID'], 'video_url', true );
+						if ( ! empty( $video_url ) ) {
+							$full_url = esc_url( $video_url );
+						}
 						?>
-      <?php if ( ! empty( $full_url ) ) : ?>
-      <div class="swiper-slide">
-        <div class="product-image-wrapper">
-          <a href="<?php echo esc_url( $full_url ); ?>" data-fancybox="<?php echo esc_attr( $unique_id ); ?>"
-            <?php if ( $img_width > 0 ) : ?> data-width="<?php echo esc_attr( (string) $img_width ); ?>" <?php endif; ?>
-            <?php if ( $img_height > 0 ) : ?> data-height="<?php echo esc_attr( (string) $img_height ); ?>"
-            <?php endif; ?>>
-            <img src="<?php echo esc_url( $large_url ); ?>" alt="<?php echo esc_attr( $img_alt ); ?>" />
-          </a>
-        </div>
-      </div>
-      <?php endif; ?>
-      <?php endforeach; ?>
-    </div>
-  </div>
+						<?php if ( ! empty( $full_url ) ) : ?>
+							<div class="swiper-slide">
+								<div class="product-image-wrapper <?php echo esc_attr( $video_url ? 'video-wrapper' : '' ); ?>">
+									<a href="<?php echo esc_url( $full_url ); ?>" data-fancybox="<?php echo esc_attr( $unique_id ); ?>"
+										data-width="100%" data-height="100%">
+										<?php if ( ! empty( $video_url ) ) : ?>
+											<div class="video-overlay">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+													stroke="currentColor" class="size-6">
+													<path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+													<path stroke-linecap="round" stroke-linejoin="round"
+														d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
+												</svg>
 
-  <div class="swiper thumbs-slider">
-    <div class="swiper-wrapper">
-      <?php foreach ( $images as $image ) : ?>
-      <?php
+											</div>
+										<?php endif; ?>
+										<img src="<?php echo esc_url( $large_url ); ?>" alt="<?php echo esc_attr( $img_alt ); ?>" />
+									</a>
+								</div>
+							</div>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</div>
+			</div>
+
+			<div class="swiper thumbs-slider">
+				<div class="swiper-wrapper">
+					<?php foreach ( $images as $image ) : ?>
+						<?php
 						$full_url = isset( $image['url'] ) ? $image['url'] : '';
 						$thumb_url = isset( $image['sizes']['thumbnail'] ) ? $image['sizes']['thumbnail'] : ( isset( $image['sizes']['large'] ) ? $image['sizes']['large'] : $full_url );
 						?>
-      <?php if ( ! empty( $full_url ) ) : ?>
-      <div class="swiper-slide">
-        <img src="<?php echo esc_url( $thumb_url ); ?>" alt="Thumbnail" />
-      </div>
-      <?php endif; ?>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</div>
-<?php
+						<?php if ( ! empty( $full_url ) ) : ?>
+							<div class="swiper-slide">
+								<img src="<?php echo esc_url( $thumb_url ); ?>" alt="Thumbnail" />
+							</div>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+		<?php
 
 		return ob_get_clean();
 	}

@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.2.1 - 2026-05-12 =
+* Dealer Finder: mobile state `<select>` fallback with new `selectStateMobile` action; shared `updateSelectedState` helper.
+* Dealer Finder: darker card background (`#080808`), body-var borders, mobile stacking for contact info.
+* Product Grid: hover colors for category/title/more links; soft radial glow on grid items.
+* Slider: support `video_url` attachment meta with play-icon overlay; new `Media` class adds the field in the Media library and autoloads it.
+* Slider markup re-indented with tabs.
+
 = 1.0.2 - 2026-05-02 =
 * Updated theme version metadata in `style.css`.
 * General maintenance and cleanup.
